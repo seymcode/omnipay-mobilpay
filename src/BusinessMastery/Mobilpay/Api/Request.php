@@ -178,7 +178,8 @@ namespace Omnipay\MobilPay\Api;
         $src_data = Mobilpay_Payment_Request::buildQueryString($params);
         $enc_data = '';
         $env_keys = [];
-        $result = openssl_seal($src_data, $enc_data, $env_keys, [$public_key]);
+        $cipher_algo = 'RC4';
+        $result = openssl_seal($src_data, $enc_data, $env_keys, [$public_key],$cipher_algo);
         if ($result === false) {
             $env_key    = null;
             $enc_data    = null;
